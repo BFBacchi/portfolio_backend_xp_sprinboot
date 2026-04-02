@@ -1,26 +1,233 @@
-/* Ventanas */
-.window {
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    width: 300px;
-    height: 200px;
-    background-color: white;
-    color: black;
-    border: 2px solid #000080;
-    display: none;
-    flex-direction: column;
+/* Ventana estilo Windows XP Luna */
+.xp-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+  min-height: 160px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  color: #000;
+  background: #ece9d8;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #0054e3;
+  box-shadow:
+    1px 0 0 #fff inset,
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    3px 3px 8px rgba(0, 0, 0, 0.35);
 }
-.window .title-bar {
-    background-color: #000080;
-    color: white;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: move;
+
+.xp-window--maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0;
+  box-shadow: none;
 }
-.window .content {
-    padding: 10px;
-    flex-grow: 1;
+
+/* Barra de título — gradiente Luna */
+.xp-window-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 29px;
+  padding: 3px 4px 3px 6px;
+  margin: 0;
+  border-radius: 7px 7px 0 0;
+  border: 1px solid #0054e3;
+  border-bottom: 1px solid #003c99;
+  cursor: default;
+  user-select: none;
+  background: linear-gradient(
+    180deg,
+    #0997ff 0%,
+    #0055ea 12%,
+    #0062ff 30%,
+    #1b6dff 55%,
+    #0850d8 78%,
+    #0442c2 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.xp-window--maximized .xp-window-titlebar {
+  border-radius: 0;
+}
+
+/* Ventana inactiva (sin foco): gris como XP */
+.xp-window:not(.xp-window--active) .xp-window-titlebar {
+  background: linear-gradient(
+    180deg,
+    #9db9e9 0%,
+    #7a9ed4 25%,
+    #6b8ec8 55%,
+    #5a7db8 100%
+  );
+  border-color: #6b8db8;
+  border-bottom-color: #5a7aa3;
+}
+
+.xp-window-titlebar-main {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+}
+
+.xp-window-title-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.xp-window-title-text {
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-window:not(.xp-window--active) .xp-window-title-text {
+  color: #d8e4f8;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Botones minimizar / maximizar / cerrar */
+.xp-window-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.win-cbtn {
+  position: relative;
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #3d94ff 0%, #1e6fd8 45%, #0c54c4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.win-cbtn:hover {
+  filter: brightness(1.08);
+}
+
+.win-cbtn:active {
+  filter: brightness(0.9);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.win-cbtn--close {
+  background: linear-gradient(180deg, #ff9a7a 0%, #e85a3a 40%, #c73818 100%);
+  border-color: #ffd0c0;
+}
+
+.win-cbtn--close:hover {
+  background: linear-gradient(180deg, #ff5c3c 0%, #e02010 45%, #b01008 100%);
+  border-color: #ffb0a0;
+}
+
+/* Iconos en botones (simplificados) */
+.win-cbtn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.win-cbtn--min::after {
+  width: 8px;
+  height: 3px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+}
+
+.win-cbtn--max::after {
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.win-cbtn--restore::after {
+  width: 13px;
+  height: 13px;
+  border: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='4' width='9' height='9' fill='none' stroke='white' stroke-width='1.3'/%3E%3Crect x='5' y='2' width='9' height='9' fill='none' stroke='white' stroke-width='1.3'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.win-cbtn--close::after {
+  width: 10px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath stroke='white' stroke-width='1.6' d='M2 2l6 6M8 2L2 8'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+/* Cuerpo */
+.xp-window-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid #0054e3;
+  border-top: none;
+  background: #ece9d8;
+  box-shadow: inset 1px 0 0 #fff;
+}
+
+.xp-window--maximized .xp-window-body {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.xp-window-content {
+  flex: 1;
+  padding: 12px 14px;
+  background: #fff;
+  margin: 2px;
+  border: 1px solid #aca899;
+  box-shadow: inset 1px 1px 0 #fff;
+  overflow: auto;
+}
+
+.xp-window-content p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Contenido tipo Explorador (sin relleno extra, ocupa todo el cuerpo) */
+.xp-window-content--explorer {
+  padding: 0;
+  margin: 1px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }

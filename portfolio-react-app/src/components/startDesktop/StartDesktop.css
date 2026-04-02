@@ -1,20 +1,13 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
- 
-  color: white;
-  /*overflow: hidden;*/
-}
-
-/* Escritorio */
+/* Escritorio — altura acorde a la barra de tareas XP */
 .desktop {
-  background-image: url("../../assets/Windows-XP-Bliss-Wallpaper-4K-696x464.jpg"); 
+  --taskbar-height: 34px;
+  background-image: url("../../assets/Windows-XP-Bliss-Wallpaper-4K-696x464.jpg");
   background-size: cover;
+  background-position: center;
   position: relative;
   width: 100vw;
-  height: calc(100vh - 40px);
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  padding: 10px;
+  height: calc(100vh - var(--taskbar-height));
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }

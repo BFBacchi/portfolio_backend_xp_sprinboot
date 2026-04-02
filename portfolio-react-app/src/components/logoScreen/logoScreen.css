@@ -5,31 +5,63 @@ body {
 
 /* Pantalla */
 .screen {
-    width: 100vw;             
+    width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
     background: black;
-    display: flex;              /
-    flex-direction: column;     
-    justify-content: center;   
-    align-items: center;        
-    min-height: 100vh;         
-    min-width: 100vw;           
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
     box-sizing: border-box;
     text-align: center;
+    position: relative;
+}
+
+/* Logo + barra apilados y centrados */
+.boot-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Logo de Windows XP */
 .logo img {
     width: 300px;
-    margin-bottom: 20px;
+    display: block;
     margin: 0 auto;
 }
 
-/* Contenedor de la barra de carga */
+/* Contenedor de la barra de carga (debajo del logo) */
 .loading {
-    margin-top: 20px;
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Marca de agua — esquina inferior derecha, legible sobre negro */
+.portfolio-watermark {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    margin: 0;
+    max-width: min(92vw, 32rem);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: rgba(210, 210, 210, 0.88);
+    text-align: right;
+    letter-spacing: 0.02em;
+    z-index: 10;
+    text-shadow:
+        0 0 1px rgba(0, 0, 0, 0.9),
+        0 1px 3px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+    user-select: none;
 }
 
 .bar {

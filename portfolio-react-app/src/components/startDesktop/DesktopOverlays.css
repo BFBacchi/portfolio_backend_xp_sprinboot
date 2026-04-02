@@ -1,0 +1,190 @@
+/* Diálogos y apps auxiliares estilo Windows XP */
+.xp-overlay-stack-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.xp-overlay-stack-layer .xp-overlay-root {
+  pointer-events: auto;
+}
+
+.xp-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+}
+
+.xp-overlay-dialog {
+  min-width: 320px;
+  max-width: min(92vw, 520px);
+  max-height: min(88vh, 640px);
+  display: flex;
+  flex-direction: column;
+  background: #ece9d8;
+  border: 1px solid #003c74;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.xp-overlay-dialog--wide {
+  max-width: min(96vw, 720px);
+  max-height: min(90vh, 720px);
+}
+
+.xp-overlay-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 8px;
+  background: linear-gradient(180deg, #0997ff 0%, #0442c2 100%);
+  border-bottom: 1px solid #003c99;
+  color: #fff;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: default;
+  user-select: none;
+}
+
+.xp-overlay-close {
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  border: 1px solid #ffd0c0;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ff9a7a 0%, #c73818 100%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.xp-overlay-body {
+  padding: 12px 14px;
+  overflow: auto;
+  color: #000;
+}
+
+.xp-overlay-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  border-top: 1px solid #fff;
+  box-shadow: inset 0 1px 0 #aca899;
+}
+
+.xp-overlay-btn {
+  min-width: 72px;
+  height: 22px;
+  padding: 0 12px;
+  font: inherit;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 50%, #dcd8ce 100%);
+  border: 1px solid #003c74;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 #fff;
+  cursor: pointer;
+}
+
+.xp-overlay-btn:hover {
+  filter: brightness(1.03);
+}
+
+.xp-notepad-ta {
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  font: 12px "Lucida Console", Consolas, monospace;
+  border: 1px solid #7f9db9;
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+.xp-calc {
+  display: grid;
+  grid-template-columns: repeat(4, 52px);
+  gap: 4px;
+  justify-content: start;
+}
+
+.xp-calc-display {
+  grid-column: 1 / -1;
+  height: 28px;
+  padding: 4px 8px;
+  text-align: right;
+  font: 14px "Lucida Console", monospace;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  margin-bottom: 4px;
+}
+
+.xp-calc button {
+  height: 26px;
+  font: inherit;
+  background: linear-gradient(180deg, #f8f8f8 0%, #e0e0e0 100%);
+  border: 1px solid #7f9db9;
+  cursor: pointer;
+}
+
+.xp-calc button:hover {
+  background: #e8f4ff;
+}
+
+.xp-paint-canvas {
+  display: block;
+  border: 1px solid #7f9db9;
+  cursor: crosshair;
+  background: #fff;
+  max-width: 100%;
+}
+
+.xp-paint-tools {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.xp-paint-tools input[type="color"] {
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #7f9db9;
+}
+
+.xp-search-input {
+  width: 100%;
+  height: 22px;
+  margin-bottom: 8px;
+  border: 1px solid #7f9db9;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.xp-cp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.xp-cp-list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  font: inherit;
+  background: #fff;
+  border: 1px solid #aca899;
+  cursor: pointer;
+}
+
+.xp-cp-list button:hover {
+  background: #316ac5;
+  color: #fff;
+}

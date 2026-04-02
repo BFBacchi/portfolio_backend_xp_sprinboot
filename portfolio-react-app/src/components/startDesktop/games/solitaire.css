@@ -1,0 +1,221 @@
+/* Solitario Klondike estilo Windows XP */
+.sol-root {
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  user-select: none;
+}
+
+.sol-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.sol-toolbar button {
+  height: 22px;
+  padding: 0 10px;
+  font: inherit;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 50%, #dcd8ce 100%);
+  border: 1px solid #003c74;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.sol-toolbar button:hover {
+  filter: brightness(1.03);
+}
+
+.sol-board {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sol-row-top {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.sol-stock-pile {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.sol-founds {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.sol-foundation-slot {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font: inherit;
+}
+
+.sol-foundation-slot:focus-visible {
+  outline: 2px solid #316ac5;
+  outline-offset: 2px;
+}
+
+.sol-slot--foundation {
+  width: 48px;
+  min-height: 64px;
+}
+
+.sol-tableau {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  min-height: 200px;
+}
+
+.sol-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 52px;
+  min-height: 120px;
+}
+
+.sol-slot {
+  width: 48px;
+  min-height: 64px;
+  border-radius: 4px;
+  border: 2px dashed #aaa;
+  background: rgba(0, 80, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sol-slot--empty {
+  justify-content: center;
+  color: #666;
+  font-size: 9px;
+  text-align: center;
+  padding: 2px;
+}
+
+.sol-card--draggable {
+  cursor: grab;
+}
+
+.sol-card--draggable:active {
+  cursor: grabbing;
+}
+
+.sol-slot--drop-over,
+.sol-foundation-slot--over {
+  border-color: #316ac5;
+  background: rgba(49, 106, 197, 0.18);
+  box-shadow: inset 0 0 0 1px #316ac5;
+}
+
+.sol-card {
+  width: 46px;
+  height: 64px;
+  margin-bottom: -48px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 2px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.sol-card:last-child {
+  margin-bottom: 0;
+}
+
+.sol-card--red {
+  color: #c00;
+}
+
+.sol-card--black {
+  color: #000;
+}
+
+.sol-card--back {
+  background: linear-gradient(135deg, #1a4a9c 0%, #0a246a 100%);
+  border-color: #003c74;
+  cursor: default;
+}
+
+.sol-card--back::after {
+  content: "♦";
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: auto;
+}
+
+.sol-card--sel {
+  outline: 2px solid #fc0;
+  outline-offset: 1px;
+  z-index: 5;
+}
+
+.sol-card-rank {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.sol-card-suit {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sol-stock {
+  width: 46px;
+  height: 64px;
+  border-radius: 4px;
+  border: 2px solid #808080;
+  background: linear-gradient(135deg, #1a4a9c 0%, #0a246a 100%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+}
+
+.sol-stock--empty {
+  background: #c0c0c0;
+  cursor: default;
+  color: #888;
+}
+
+.sol-waste {
+  width: 46px;
+  height: 64px;
+  border: 1px dashed #999;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sol-help {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #555;
+  max-width: 420px;
+  line-height: 1.35;
+}

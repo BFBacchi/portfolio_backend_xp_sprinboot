@@ -1,0 +1,121 @@
+/* Buscaminas estilo Windows XP */
+.ms-root {
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  user-select: none;
+}
+
+.ms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  background: linear-gradient(180deg, #ece9d8 0%, #dcd8ce 100%);
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+}
+
+.ms-counter {
+  min-width: 42px;
+  padding: 2px 4px;
+  background: #000;
+  color: #f00;
+  font: bold 18px "Lucida Console", monospace;
+  text-align: right;
+  border: 1px inset #808080;
+}
+
+.ms-face {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  background: #c0c0c0;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ms-face:active {
+  border-color: #404040 #fff #fff #404040;
+}
+
+.ms-grid {
+  display: inline-grid;
+  gap: 0;
+  padding: 4px;
+  background: #c0c0c0;
+  border: 3px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
+.ms-cell {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  background: #c0c0c0;
+  font: bold 12px Tahoma, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.ms-cell--revealed {
+  border: 1px solid #808080;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  background: #c0c0c0;
+  cursor: default;
+}
+
+.ms-cell--mine {
+  background: #c0c0c0;
+}
+
+.ms-cell--flag::after {
+  content: "⚑";
+  color: #c00;
+  font-size: 11px;
+}
+
+.ms-cell--hit {
+  background: #f00;
+}
+
+.ms-n1 {
+  color: #00f;
+}
+.ms-n2 {
+  color: #080;
+}
+.ms-n3 {
+  color: #c00;
+}
+.ms-n4 {
+  color: #008;
+}
+.ms-n5 {
+  color: #800;
+}
+.ms-n6 {
+  color: #088;
+}
+.ms-n7 {
+  color: #000;
+}
+.ms-n8 {
+  color: #666;
+}
+
+.ms-help {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #444;
+}

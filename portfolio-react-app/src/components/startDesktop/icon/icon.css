@@ -1,11 +1,52 @@
-/* Iconos */
+/* Iconos de escritorio estilo XP */
 .icon {
-    width: 80px;
-    margin: 10px;
-    text-align: center;
-    cursor: pointer;
+  position: absolute;
+  width: 80px;
+  margin: 0;
+  padding: 2px 4px;
+  text-align: center;
+  cursor: default;
+  box-sizing: border-box;
 }
+
 .icon img {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.icon p {
+  margin: 4px 0 0;
+  padding: 0 2px;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow:
+    1px 0 0 #000,
+    -1px 0 0 #000,
+    0 1px 0 #000,
+    0 -1px 0 #000,
+    1px 1px 2px rgba(0, 0, 0, 0.9);
+  word-wrap: break-word;
+}
+
+.icon:focus {
+  outline: 1px dotted #fff;
+  outline-offset: 2px;
+}
+
+.icon--dragging {
+  opacity: 0.92;
+  z-index: 60;
+}
+
+.icon--dragging p {
+  text-shadow:
+    1px 0 0 #316ac5,
+    -1px 0 0 #316ac5,
+    0 1px 0 #316ac5,
+    0 -1px 0 #316ac5;
 }
