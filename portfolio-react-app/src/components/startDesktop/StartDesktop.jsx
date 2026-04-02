@@ -180,6 +180,13 @@ const StartDesktop = () => {
     }));
   }, []);
 
+  const resizeWindow = useCallback((winId, rect) => {
+    setWindows((prev) => ({
+      ...prev,
+      [winId]: { ...prev[winId], x: rect.x, y: rect.y, w: rect.w, h: rect.h },
+    }));
+  }, []);
+
   const onTaskbarWindowClick = useCallback(
     (winId) => {
       setWindows((prev) => {
@@ -374,6 +381,7 @@ const StartDesktop = () => {
       minimizeWindow,
       toggleMaximize,
       moveWindow,
+      resizeWindow,
       bringToFront,
       explorerNav,
       navigateExplorer,
@@ -399,6 +407,7 @@ const StartDesktop = () => {
       minimizeWindow,
       toggleMaximize,
       moveWindow,
+      resizeWindow,
       bringToFront,
       explorerNav,
       navigateExplorer,
@@ -593,6 +602,7 @@ const StartDesktop = () => {
               onMinimize={minimizeWindow}
               onToggleMaximize={toggleMaximize}
               onMove={moveWindow}
+              onResize={resizeWindow}
             />
           );
         })}
