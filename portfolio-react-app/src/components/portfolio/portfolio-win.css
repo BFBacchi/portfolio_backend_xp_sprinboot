@@ -1,0 +1,65 @@
+.portfolio-win-scroll {
+  height: 100%;
+  overflow: auto;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #222;
+  background: #ece9d8;
+}
+
+.portfolio-win-section {
+  margin-bottom: 14px;
+}
+
+.portfolio-win-section h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #003399;
+  border-bottom: 1px solid #aca899;
+  padding-bottom: 2px;
+}
+
+.portfolio-win-section p {
+  margin: 0 0 6px;
+  white-space: pre-wrap;
+}
+
+.portfolio-win-item {
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  background: #f7f7f4;
+  border: 1px solid #d4d0c8;
+  border-radius: 2px;
+}
+
+.portfolio-win-item strong {
+  display: block;
+}
+
+.portfolio-win-muted {
+  color: #555;
+  font-size: 11px;
+}
+
+.portfolio-win-xp-note {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #666;
+  font-style: italic;
+}
+
+.portfolio-win-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.portfolio-win-hub button {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}

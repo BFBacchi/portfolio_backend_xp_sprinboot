@@ -1,0 +1,128 @@
+/* Cuadro de mensaje estilo Windows XP (Luna) */
+.xp-msgbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.35);
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+}
+
+.xp-msgbox-dialog {
+  min-width: min(100%, 380px);
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  background: #ece9d8;
+  border: 1px solid #003c74;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.xp-msgbox-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 8px;
+  background: linear-gradient(180deg, #0997ff 0%, #0442c2 100%);
+  border-bottom: 1px solid #003c99;
+  color: #fff;
+  font-weight: bold;
+  font-size: 11px;
+  user-select: none;
+  cursor: default;
+}
+
+.xp-msgbox-titlebar-text {
+  flex: 1;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.xp-msgbox-titlebar-x {
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  margin-left: 6px;
+  border: 1px solid #ffd0c0;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ff9a7a 0%, #c73818 100%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.xp-msgbox-titlebar-x:hover {
+  filter: brightness(1.08);
+}
+
+.xp-msgbox-main {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px 14px 16px;
+  align-items: flex-start;
+  color: #000;
+}
+
+.xp-msgbox-icon-wrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-msgbox-text {
+  flex: 1;
+  line-height: 1.45;
+  padding-top: 2px;
+}
+
+.xp-msgbox-text p {
+  margin: 0 0 8px;
+}
+
+.xp-msgbox-text p:last-child {
+  margin-bottom: 0;
+}
+
+.xp-msgbox-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px 14px;
+  border-top: 1px solid #fff;
+  box-shadow: inset 0 1px 0 #aca899;
+}
+
+.xp-msgbox-btn {
+  min-width: 76px;
+  height: 23px;
+  padding: 0 14px;
+  font: 11px Tahoma, "MS Sans Serif", sans-serif;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 50%, #dcd8ce 100%);
+  border: 1px solid #003c74;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 #fff;
+  cursor: pointer;
+}
+
+.xp-msgbox-btn:hover {
+  filter: brightness(1.04);
+}
+
+.xp-msgbox-btn:active {
+  transform: translateY(1px);
+}
+
+/* Botón por defecto (estilo XP: marco punteado simulado con borde) */
+.xp-msgbox-btn--default {
+  outline: 1px dotted #000;
+  outline-offset: 1px;
+}

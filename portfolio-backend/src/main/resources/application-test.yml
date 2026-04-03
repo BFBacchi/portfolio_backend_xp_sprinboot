@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:portfoliotest;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: false
+
+jwt:
+  secret: test-jwt-secret-key-must-be-long-enough-for-hs256-algorithm-256bits
+  expiration-ms: 3600000
+
+portfolio:
+  cors:
+    allowed-origins: http://localhost:5173

@@ -1,0 +1,158 @@
+/* Panel administración — estética Windows XP Luna */
+.admin-xp-root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #245edc 0%, #0938a6 45%, #062d88 100%);
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 12px;
+  color: #000;
+  padding: 24px 16px 48px;
+  box-sizing: border-box;
+}
+
+.admin-xp-window {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ece9d8;
+  border: 1px solid #003c74;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.admin-xp-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 4px 8px;
+  border-radius: 7px 7px 0 0;
+  background: linear-gradient(180deg, #0997ff 0%, #0442c2 100%);
+  border-bottom: 1px solid #003c99;
+  color: #fff;
+  font-weight: bold;
+}
+
+.admin-xp-titlebar span {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.admin-xp-body {
+  padding: 12px 14px 16px;
+  background: #ece9d8;
+}
+
+.admin-xp-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.admin-xp-tabs button {
+  height: 24px;
+  padding: 0 12px;
+  font: inherit;
+  background: linear-gradient(180deg, #fff 0%, #dcd8ce 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.admin-xp-tabs button.admin-xp-tab--on {
+  background: linear-gradient(180deg, #ffe8a0 0%, #f0d060 100%);
+  font-weight: bold;
+}
+
+.admin-xp-field {
+  margin-bottom: 8px;
+}
+
+.admin-xp-field label {
+  display: block;
+  margin-bottom: 2px;
+  color: #222;
+}
+
+.admin-xp-field input,
+.admin-xp-field textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #7f9db9;
+  padding: 4px 6px;
+  font: 12px Tahoma, sans-serif;
+}
+
+.admin-xp-field textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.admin-xp-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-xp-actions button {
+  min-width: 88px;
+  height: 23px;
+  padding: 0 12px;
+  font: inherit;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 50%, #dcd8ce 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.admin-xp-actions button.admin-xp-btn-primary {
+  font-weight: bold;
+}
+
+.admin-xp-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 1px solid #aca899;
+  background: #fff;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.admin-xp-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 11px;
+}
+
+.admin-xp-list li:last-child {
+  border-bottom: none;
+}
+
+.admin-xp-msg {
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #c00;
+  background: #fff0f0;
+  font-size: 11px;
+}
+
+.admin-xp-msg--ok {
+  border-color: #080;
+  background: #f0fff0;
+}
+
+.admin-xp-login-box {
+  max-width: 380px;
+  margin: 10vh auto 0;
+}
+
+.admin-xp-hint {
+  font-size: 10px;
+  color: #555;
+  margin-top: 8px;
+  line-height: 1.35;
+}

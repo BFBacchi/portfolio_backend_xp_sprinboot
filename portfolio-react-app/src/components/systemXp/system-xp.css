@@ -1,0 +1,114 @@
+/* Pantallas de sistema estilo Windows XP (cerrar sesión / apagar) */
+
+.xp-system-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.xp-system-root--logoff {
+  background: radial-gradient(ellipse 120% 100% at 50% 0%, #1a4a9e 0%, #0a2463 45%, #051838 100%);
+}
+
+.xp-system-root--shutdown {
+  background: radial-gradient(ellipse 120% 100% at 50% 100%, #1e5a8c 0%, #0d3a5c 40%, #061a2e 100%);
+}
+
+.xp-system-root--poweroff {
+  background: #000;
+  color: #c0c0c0;
+}
+
+.xp-system-logo-wrap {
+  margin-bottom: 28px;
+}
+
+.xp-system-logo-wrap img {
+  width: min(280px, 72vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+}
+
+.xp-system-message {
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  min-height: 1.4em;
+  margin: 0 24px 32px;
+}
+
+.xp-system-progress {
+  width: min(320px, 85vw);
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.xp-system-progress-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    #2d8f2d 0%,
+    #5cb85c 35%,
+    #7fd67f 50%,
+    #5cb85c 65%,
+    #2d8f2d 100%
+  );
+  box-shadow: 0 0 8px rgba(127, 214, 127, 0.4);
+  animation: xp-progress-slide 1.8s ease-in-out infinite;
+}
+
+@keyframes xp-progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.xp-poweroff-msg {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 24px 28px;
+  color: #a8a8a8;
+}
+
+.xp-poweroff-btn {
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  padding: 8px 24px;
+  cursor: pointer;
+  border: 1px solid #555;
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+  color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+.xp-poweroff-btn:hover {
+  background: linear-gradient(180deg, #5a5a5a 0%, #3a3a3a 100%);
+}
+
+.xp-poweroff-btn:active {
+  transform: translateY(1px);
+}

@@ -1,26 +1,24 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import LogoScreen from './components/logoScreen/LogoScreen';
 import StartDesktop from './components/startDesktop/StartDesktop.jsx';
-import { Routes, Route } from 'react-router-dom';
+import AdminLogin from './components/admin/AdminLogin.jsx';
+import AdminPanel from './components/admin/AdminPanel.jsx';
+import LogOffScreen from './components/systemXp/LogOffScreen.jsx';
+import ShutdownScreen from './components/systemXp/ShutdownScreen.jsx';
+import PowerOffScreen from './components/systemXp/PowerOffScreen.jsx';
+import XpWelcomeScreen from './components/welcome/XpWelcomeScreen.jsx';
 
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Redirige a "/start" después de 6 segundos
-    const timer = setTimeout(() => {
-      navigate('/start');
-    }, 6000);
-
-    // Limpia el temporizador si el componente se desmonta
-    return () => clearTimeout(timer);
-  }, [navigate]);
-
   return (
     <Routes>
       <Route path="/" element={<LogoScreen />} />
+      <Route path="/welcome" element={<XpWelcomeScreen />} />
       <Route path="/start" element={<StartDesktop />} />
+      <Route path="/logoff" element={<LogOffScreen />} />
+      <Route path="/shutdown" element={<ShutdownScreen />} />
+      <Route path="/power-off" element={<PowerOffScreen />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<AdminPanel />} />
     </Routes>
   );
 }

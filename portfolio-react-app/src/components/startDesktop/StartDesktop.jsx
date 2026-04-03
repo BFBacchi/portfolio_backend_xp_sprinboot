@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useEffect,
 } from "react";
+import { useNavigate } from "react-router-dom";
 import IconList from "./IconList";
 import TaskBar from "./taskbar/TaskBar";
 import ContextMenu from "./contextMenu/ContextMenu";
@@ -15,6 +16,15 @@ import { DesktopActionsContext } from "./context/DesktopActionsContext";
 import { EXPLORER_PATHS, DEFAULT_EXPLORER_PATH } from "./context/explorerFs";
 import myComputerIcon from "../../assets/mycomputer.png";
 import recycleBinIcon from "../../assets/recyclebin.png";
+import { useAuth } from "../../contexts/AuthContext.jsx";
+import { PortfolioPublicProvider } from "../../contexts/PortfolioPublicContext.jsx";
+import PortfolioShowcaseContent from "../portfolio/PortfolioShowcaseContent.jsx";
+import AdminHubContent from "../portfolio/AdminHubContent.jsx";
+import AdminAboutContent from "../portfolio/AdminAboutContent.jsx";
+import AdminProjectsContent from "../portfolio/AdminProjectsContent.jsx";
+import AdminEducationContent from "../portfolio/AdminEducationContent.jsx";
+import AdminSkillsContent from "../portfolio/AdminSkillsContent.jsx";
+import AdminWorkExperienceContent from "../portfolio/AdminWorkExperienceContent.jsx";
 import "./StartDesktop.css";
 
 const LS_ICONS = "xp-portfolio-icon-positions";
@@ -22,6 +32,8 @@ const LS_ICONS = "xp-portfolio-icon-positions";
 const defaultPositions = () => ({
   myComputer: { x: 16, y: 16 },
   recycleBin: { x: 16, y: 120 },
+  portfolioStudio: { x: 16, y: 224 },
+  portfolioViewer: { x: 16, y: 328 },
 });
 
 function loadPositions() {
@@ -50,11 +62,25 @@ const createWinState = (x, y, w, h) => ({
 const WIN_META = {
   myComputer: { title: "Mi PC", icon: myComputerIcon },
   recycleBin: { title: "Papelera", icon: recycleBinIcon },
+  portfolioShowcase: { title: "Mi portfolio", icon: myComputerIcon },
+  adminHub: { title: "Edición del portfolio", icon: myComputerIcon },
+  adminAbout: { title: "Sobre mí — edición", icon: myComputerIcon },
+  adminProjects: { title: "Proyectos — edición", icon: myComputerIcon },
+  adminEducation: { title: "Educación — edición", icon: myComputerIcon },
+  adminSkills: { title: "Habilidades — edición", icon: myComputerIcon },
+  adminWork: { title: "Experiencia laboral — edición", icon: myComputerIcon },
 };
 
 const WINDOW_RESTORE_DEFAULTS = {
   myComputer: { x: 48, y: 36, w: 560, h: 440 },
   recycleBin: { x: 72, y: 64, w: 520, h: 400 },
+  portfolioShowcase: { x: 40, y: 28, w: 620, h: 520 },
+  adminHub: { x: 72, y: 48, w: 360, h: 320 },
+  adminAbout: { x: 88, y: 44, w: 520, h: 480 },
+  adminProjects: { x: 100, y: 52, w: 560, h: 560 },
+  adminEducation: { x: 112, y: 60, w: 520, h: 520 },
+  adminSkills: { x: 124, y: 68, w: 480, h: 500 },
+  adminWork: { x: 136, y: 76, w: 520, h: 520 },
 };
 
 const defaultExplorerNav = () => ({
@@ -63,6 +89,8 @@ const defaultExplorerNav = () => ({
 });
 
 const StartDesktop = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, isGuest } = useAuth();
   const desktopRef = useRef(null);
   const [iconPositions, setIconPositions] = useState(loadPositions);
   const [, setRefreshTick] = useState(0);
@@ -76,6 +104,13 @@ const StartDesktop = () => {
   const [windows, setWindows] = useState({
     myComputer: createWinState(48, 36, 560, 440),
     recycleBin: createWinState(72, 64, 520, 400),
+    portfolioShowcase: createWinState(40, 28, 620, 520),
+    adminHub: createWinState(72, 48, 360, 320),
+    adminAbout: createWinState(88, 44, 520, 480),
+    adminProjects: createWinState(100, 52, 560, 560),
+    adminEducation: createWinState(112, 60, 520, 520),
+    adminSkills: createWinState(124, 68, 480, 500),
+    adminWork: createWinState(136, 76, 520, 520),
   });
 
   const [focusedWinId, setFocusedWinId] = useState(null);
@@ -90,6 +125,12 @@ const StartDesktop = () => {
       /* ignore */
     }
   }, [iconPositions]);
+
+  useEffect(() => {
+    if (!isAuthenticated && !isGuest) {
+      navigate("/welcome", { replace: true });
+    }
+  }, [isAuthenticated, isGuest, navigate]);
 
   const bringToFront = useCallback((id) => {
     setWindows((prev) => {
@@ -122,6 +163,15 @@ const StartDesktop = () => {
     },
     [openWindow]
   );
+
+  const handleOpenPortfolioStudio = useCallback(() => {
+    if (isAuthenticated) openWindow("adminHub");
+    else navigate("/welcome");
+  }, [isAuthenticated, openWindow, navigate]);
+
+  const handleOpenPortfolioViewer = useCallback(() => {
+    openWindow("portfolioShowcase");
+  }, [openWindow]);
 
   const closeWindow = useCallback((winId) => {
     setWindows((prev) => ({
@@ -436,8 +486,18 @@ const StartDesktop = () => {
           {
             label: "Por nombre",
             onClick: () => {
-              const order = ["myComputer", "recycleBin"].sort((a, b) => {
-                const labels = { myComputer: "Mi PC", recycleBin: "Papelera" };
+              const order = [
+                "myComputer",
+                "recycleBin",
+                "portfolioStudio",
+                "portfolioViewer",
+              ].sort((a, b) => {
+                const labels = {
+                  myComputer: "Mi PC",
+                  recycleBin: "Papelera",
+                  portfolioStudio: "Estudio del portfolio",
+                  portfolioViewer: "Mi portfolio",
+                };
                 return labels[a].localeCompare(labels[b], "es");
               });
               arrangeColumn(order);
@@ -446,7 +506,12 @@ const StartDesktop = () => {
           {
             label: "Por tipo",
             onClick: () => {
-              const order = ["recycleBin", "myComputer"];
+              const order = [
+                "recycleBin",
+                "myComputer",
+                "portfolioStudio",
+                "portfolioViewer",
+              ];
               arrangeColumn(order);
             },
           },
@@ -479,7 +544,7 @@ const StartDesktop = () => {
           openOverlay({
             type: "desktopprops",
             payload: {
-              icons: 2,
+              icons: 4,
               resolution: `${window.screen.width} × ${window.screen.height}`,
             },
           }),
@@ -508,7 +573,14 @@ const StartDesktop = () => {
   const handleIconContextMenu = useCallback(
     (e, { id, name }) => {
       const items = [
-        { label: "Abrir", onClick: () => openWindowFromIcon(id) },
+        {
+          label: "Abrir",
+          onClick: () => {
+            if (id === "portfolioStudio") handleOpenPortfolioStudio();
+            else if (id === "portfolioViewer") handleOpenPortfolioViewer();
+            else openWindowFromIcon(id);
+          },
+        },
         ...(id === "myComputer"
           ? [{ label: "Explorar", onClick: () => openWindowFromIcon(id) }]
           : []),
@@ -537,7 +609,7 @@ const StartDesktop = () => {
         items,
       });
     },
-    [openWindowFromIcon, openOverlay]
+    [openWindowFromIcon, openOverlay, handleOpenPortfolioStudio, handleOpenPortfolioViewer]
   );
 
   const onPositionChange = useCallback((id, x, y) => {
@@ -559,8 +631,26 @@ const StartDesktop = () => {
 
   const windowIds = Object.keys(WIN_META);
 
+  const windowContentFor = (winId) => {
+    if (winId === "myComputer") {
+      return <ExplorerView variant="myComputer" />;
+    }
+    if (winId === "recycleBin") {
+      return <ExplorerView variant="recycleBin" />;
+    }
+    if (winId === "portfolioShowcase") return <PortfolioShowcaseContent />;
+    if (winId === "adminHub") return <AdminHubContent />;
+    if (winId === "adminAbout") return <AdminAboutContent />;
+    if (winId === "adminProjects") return <AdminProjectsContent />;
+    if (winId === "adminEducation") return <AdminEducationContent />;
+    if (winId === "adminSkills") return <AdminSkillsContent />;
+    if (winId === "adminWork") return <AdminWorkExperienceContent />;
+    return null;
+  };
+
   return (
-    <DesktopActionsContext.Provider value={desktopActionsValue}>
+    <PortfolioPublicProvider>
+      <DesktopActionsContext.Provider value={desktopActionsValue}>
       <div
         ref={desktopRef}
         className="desktop"
@@ -571,6 +661,8 @@ const StartDesktop = () => {
           positions={iconPositions}
           onPositionChange={onPositionChange}
           onOpenWindow={openWindowFromIcon}
+          onOpenPortfolioStudio={handleOpenPortfolioStudio}
+          onOpenPortfolioViewer={handleOpenPortfolioViewer}
           onIconContextMenu={handleIconContextMenu}
         />
         {windowIds.map((winId) => {
@@ -586,13 +678,14 @@ const StartDesktop = () => {
             h: st.h,
             z: st.z,
           };
+          const explorer = winId === "myComputer" || winId === "recycleBin";
           return (
             <WindowComponent
               key={winId}
               winId={winId}
               title={cfg.title}
-              layout="explorer"
-              content={<ExplorerView variant={winId} />}
+              layout={explorer ? "explorer" : "default"}
+              content={windowContentFor(winId)}
               iconSrc={cfg.icon}
               state={stateForChild}
               isActive={focusedWinId === winId}
@@ -620,7 +713,8 @@ const StartDesktop = () => {
         onClose={closeCtx}
       />
       <DesktopOverlays />
-    </DesktopActionsContext.Provider>
+      </DesktopActionsContext.Provider>
+    </PortfolioPublicProvider>
   );
 };
 

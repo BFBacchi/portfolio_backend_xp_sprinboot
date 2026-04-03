@@ -8,6 +8,8 @@ const IconList = ({
   positions,
   onPositionChange,
   onOpenWindow,
+  onOpenPortfolioStudio,
+  onOpenPortfolioViewer,
   onIconContextMenu,
 }) => {
   return (
@@ -32,6 +34,28 @@ const IconList = ({
         desktopRef={desktopRef}
         onPositionChange={onPositionChange}
         onOpen={() => onOpenWindow("recycleBin")}
+        onRequestContextMenu={onIconContextMenu}
+      />
+      <Icon
+        id="portfolioViewer"
+        name="Mi portfolio"
+        image={myComputerIcon}
+        left={positions.portfolioViewer?.x ?? 16}
+        top={positions.portfolioViewer?.y ?? 328}
+        desktopRef={desktopRef}
+        onPositionChange={onPositionChange}
+        onOpen={onOpenPortfolioViewer}
+        onRequestContextMenu={onIconContextMenu}
+      />
+      <Icon
+        id="portfolioStudio"
+        name="Estudio del portfolio"
+        image={myComputerIcon}
+        left={positions.portfolioStudio?.x ?? 16}
+        top={positions.portfolioStudio?.y ?? 224}
+        desktopRef={desktopRef}
+        onPositionChange={onPositionChange}
+        onOpen={onOpenPortfolioStudio}
         onRequestContextMenu={onIconContextMenu}
       />
     </>
