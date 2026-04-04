@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import LogoScreen from './components/logoScreen/LogoScreen';
+import LogoScreen from './components/logoScreen/LogoScreen.jsx';
 import StartDesktop from './components/startDesktop/StartDesktop.jsx';
 import AdminLogin from './components/admin/AdminLogin.jsx';
 import AdminPanel from './components/admin/AdminPanel.jsx';

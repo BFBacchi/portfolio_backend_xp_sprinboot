@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './logoScreen.css';
+import './LogoScreen.css';
 import winxpLogo from '../../assets/winxp.png';
 
 const LogoScreen = () => {

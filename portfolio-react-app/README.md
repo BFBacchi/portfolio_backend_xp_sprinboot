@@ -96,6 +96,10 @@ docker run --rm -p 8081:80 portfolio-xp-front
 
 Abre `http://localhost:8081`.
 
+### Error en Docker: `Could not resolve ... LogoScreen`
+
+En **Linux** (build de Docker / Easypanel) las rutas de archivos **distinguen mayúsculas**. Los imports deben coincidir exactamente con los nombres en Git (p. ej. `LogoScreen.jsx`, no `logoScreen.jsx` mezclado con import `LogoScreen`).
+
 ---
 
 Plantilla base: [Vite + React](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react).
