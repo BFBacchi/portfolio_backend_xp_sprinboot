@@ -41,10 +41,12 @@ public class SecurityConfig {
       @Value("${portfolio.cors.allowed-origins}") String allowedOrigins) {
     CorsConfiguration c = new CorsConfiguration();
     c.setAllowCredentials(true);
+    // Origin del navegador nunca lleva barra final; si en env se pone https://app.com/ no coincide.
     List<String> patterns =
         Arrays.stream(allowedOrigins.split(","))
             .map(String::trim)
             .filter(s -> !s.isEmpty())
+            .map(s -> s.replaceAll("/+$", ""))
             .collect(Collectors.toList());
     c.setAllowedOriginPatterns(patterns);
     c.setAllowedHeaders(List.of("*"));
