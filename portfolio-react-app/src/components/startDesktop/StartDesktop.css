@@ -1,6 +1,7 @@
 /* Escritorio — altura acorde a la barra de tareas XP */
 .desktop {
   --taskbar-height: 34px;
+  color: #1a1a1a;
   background-image: url("../../assets/Windows-XP-Bliss-Wallpaper-4K-696x464.jpg");
   background-size: cover;
   background-position: center;

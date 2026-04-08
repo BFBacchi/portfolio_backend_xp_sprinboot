@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext.jsx";
 import { useDesktopActions } from "../context/DesktopActionsContext";
 import XpMessageBox from "../xpMessageBox/XpMessageBox.jsx";
+import profilePhoto from "../../../assets/profile-photo.png";
 
 const TASKBAR_H = 34;
 
@@ -64,7 +65,14 @@ function createStartMenuItems({
         { type: "separator" },
         {
           label: "Inicio",
-          submenu: [{ label: "Inicio (vacío)", disabled: true }],
+          submenu: [
+            { type: "profileCard" },
+            { type: "separator" },
+            {
+              label: "Mi portfolio (lectura)",
+              onClick: () => openWindow("portfolioShowcase"),
+            },
+          ],
         },
         {
           label: "Juegos",
@@ -140,6 +148,23 @@ function StartFlyout({ items, onPick }) {
   return (
     <ul className="start-flyout" role="menu">
       {items.map((item, i) => {
+        if (item.type === "profileCard") {
+          return (
+            <li key={`profile-${i}`} className="start-flyout-profile-card" role="presentation">
+              <img
+                className="start-flyout-profile-img"
+                src={profilePhoto}
+                alt=""
+                width={40}
+                height={40}
+              />
+              <div className="start-flyout-profile-meta">
+                <div className="start-flyout-profile-name">Bruno Bacchi</div>
+                <div className="start-flyout-profile-hint">Perfil de usuario</div>
+              </div>
+            </li>
+          );
+        }
         if (item.type === "separator") {
           return <li key={`fs-${i}`} className="start-flyout-sep" role="separator" />;
         }
@@ -305,7 +330,13 @@ const StartMenu = ({ open, onClose, anchorRef }) => {
             </aside>
             <div className="start-menu-xp-body">
               <header className="start-menu-xp-user">
-                <div className="start-menu-xp-user-avatar" aria-hidden="true" />
+                <img
+                  className="start-menu-xp-user-avatar"
+                  src={profilePhoto}
+                  alt="Bruno Bacchi"
+                  width={42}
+                  height={42}
+                />
                 <div className="start-menu-xp-user-name">Bruno Bacchi</div>
               </header>
               <div className="start-menu-xp-list">
