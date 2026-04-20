@@ -36,7 +36,7 @@ public class PublicPortfolioController {
 
   @GetMapping("/about-me")
   public AboutMeDto aboutMe() {
-    return contentService.getPublicAboutMe().withXpNote(XP_FLAVOR);
+    return contentService.getPublicAboutMe().withoutPrivateFields().withXpNote(XP_FLAVOR);
   }
 
   @GetMapping("/projects")

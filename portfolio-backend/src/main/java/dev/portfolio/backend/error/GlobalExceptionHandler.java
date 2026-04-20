@@ -71,6 +71,30 @@ public class GlobalExceptionHandler {
                 fields));
   }
 
+  @ExceptionHandler(AssistantUnavailableException.class)
+  public ResponseEntity<ApiErrorBody> assistantUnavailable(
+      AssistantUnavailableException ex, HttpServletRequest req) {
+    return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+        .body(
+            ApiErrorBody.of(
+                HttpStatus.SERVICE_UNAVAILABLE.value(),
+                "Assistant Unavailable",
+                ex.getMessage(),
+                req.getRequestURI()));
+  }
+
+  @ExceptionHandler(AssistantUpstreamException.class)
+  public ResponseEntity<ApiErrorBody> assistantUpstream(
+      AssistantUpstreamException ex, HttpServletRequest req) {
+    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+        .body(
+            ApiErrorBody.of(
+                HttpStatus.BAD_GATEWAY.value(),
+                "Upstream Error",
+                "No se pudo obtener respuesta del servicio de IA.",
+                req.getRequestURI()));
+  }
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiErrorBody> generic(Exception ex, HttpServletRequest req) {
     log.error("Error no controlado: {}", ex.getMessage(), ex);

@@ -58,3 +58,11 @@ export async function apiFetch(path, options = {}) {
   }
   return data;
 }
+
+export function askPortfolioAssistant(question) {
+  return apiFetch('/api/v1/public/assistant/ask', {
+    method: 'POST',
+    omitAuth: true,
+    body: JSON.stringify({ question }),
+  });
+}

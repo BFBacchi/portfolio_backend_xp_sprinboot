@@ -1,0 +1,2 @@
+ALTER TABLE about_me
+ADD COLUMN IF NOT EXISTS cv_text TEXT;

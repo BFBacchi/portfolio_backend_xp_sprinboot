@@ -25,6 +25,7 @@ import AdminProjectsContent from "../portfolio/AdminProjectsContent.jsx";
 import AdminEducationContent from "../portfolio/AdminEducationContent.jsx";
 import AdminSkillsContent from "../portfolio/AdminSkillsContent.jsx";
 import AdminWorkExperienceContent from "../portfolio/AdminWorkExperienceContent.jsx";
+import ClippyAssistant from "../assistant/ClippyAssistant.jsx";
 import "./StartDesktop.css";
 
 const LS_ICONS = "xp-portfolio-icon-positions";
@@ -713,6 +714,7 @@ const StartDesktop = () => {
         onClose={closeCtx}
       />
       <DesktopOverlays />
+      <ClippyAssistant variant="desktop" />
       </DesktopActionsContext.Provider>
     </PortfolioPublicProvider>
   );

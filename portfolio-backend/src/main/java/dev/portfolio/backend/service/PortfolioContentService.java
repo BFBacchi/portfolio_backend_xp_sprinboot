@@ -65,6 +65,7 @@ public class PortfolioContentService {
                     null,
                     null,
                     null,
+                    null,
                     null));
   }
 
@@ -76,10 +77,16 @@ public class PortfolioContentService {
 
   private AboutMeDto toAboutDto(AboutMe a) {
     if (a == null) {
-      return new AboutMeDto(null, null, null, null, null, null);
+      return new AboutMeDto(null, null, null, null, null, null, null);
     }
     return new AboutMeDto(
-        a.getId(), a.getHeadline(), a.getBio(), a.getTagline(), a.getLunaQuote(), null);
+        a.getId(),
+        a.getHeadline(),
+        a.getBio(),
+        a.getCvText(),
+        a.getTagline(),
+        a.getLunaQuote(),
+        null);
   }
 
   @Transactional
@@ -100,6 +107,9 @@ public class PortfolioContentService {
     }
     if (req.bio() != null) {
       am.setBio(req.bio());
+    }
+    if (req.cvText() != null) {
+      am.setCvText(req.cvText());
     }
     if (req.tagline() != null) {
       am.setTagline(req.tagline());

@@ -35,6 +35,9 @@ public class AboutMe {
   @Column(columnDefinition = "TEXT")
   private String bio;
 
+  @Column(name = "cv_text", columnDefinition = "TEXT")
+  private String cvText;
+
   @Column(length = 400)
   private String tagline;
 

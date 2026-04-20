@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext.jsx';
 import XpMessageBox from '../startDesktop/xpMessageBox/XpMessageBox.jsx';
+import ClippyAssistant from '../assistant/ClippyAssistant.jsx';
 import winxpLogo from '../../assets/winxp.png';
 import './xp-welcome.css';
 
@@ -157,6 +158,7 @@ export default function XpWelcomeScreen() {
         <p>¿Desea apagar el equipo?</p>
         <p>Se cerrará el sistema de forma segura.</p>
       </XpMessageBox>
+      <ClippyAssistant variant="welcome" />
     </div>
   );
 }

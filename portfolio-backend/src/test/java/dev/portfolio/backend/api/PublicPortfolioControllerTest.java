@@ -37,7 +37,7 @@ class PublicPortfolioControllerTest {
   @Test
   void aboutMeIncludesXpNote() throws Exception {
     when(contentService.getPublicAboutMe())
-        .thenReturn(new AboutMeDto(1L, "Dev", "Bio", "Tag", "Luna quote", null));
+        .thenReturn(new AboutMeDto(1L, "Dev", "Bio", "CV", "Tag", "Luna quote", null));
 
     mockMvc
         .perform(get("/api/v1/public/about-me"))

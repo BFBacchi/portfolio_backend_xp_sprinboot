@@ -46,3 +46,12 @@ jwt:
   # En producción usar variable de entorno con secreto largo (≥ 256 bits para HS256)
   secret: ${JWT_SECRET:dev-portfolio-jwt-secret-change-in-production-min-32-chars!!}
   expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+assistant:
+  openai:
+    enabled: ${OPENAI_ENABLED:false}
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4o-mini}
+    max-tokens: ${OPENAI_MAX_TOKENS:350}
+    timeout-ms: ${OPENAI_TIMEOUT_MS:12000}
+    temperature: ${OPENAI_TEMPERATURE:0.3}

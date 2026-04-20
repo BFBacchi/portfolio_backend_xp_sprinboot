@@ -13,6 +13,7 @@ export default function AdminAboutContent() {
   const [about, setAbout] = useState({
     headline: '',
     bio: '',
+    cvText: '',
     tagline: '',
     lunaQuote: '',
   });
@@ -26,6 +27,7 @@ export default function AdminAboutContent() {
       setAbout({
         headline: a.headline || '',
         bio: a.bio || '',
+        cvText: a.cvText || '',
         tagline: a.tagline || '',
         lunaQuote: a.lunaQuote || '',
       });
@@ -88,6 +90,14 @@ export default function AdminAboutContent() {
           <input
             value={about.tagline}
             onChange={(e) => setAbout((a) => ({ ...a, tagline: e.target.value }))}
+          />
+        </div>
+        <div className="admin-xp-field">
+          <label>CV para asistente IA (texto)</label>
+          <textarea
+            value={about.cvText}
+            onChange={(e) => setAbout((a) => ({ ...a, cvText: e.target.value }))}
+            style={{ minHeight: 120 }}
           />
         </div>
         <div className="admin-xp-field">
