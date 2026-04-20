@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { askPortfolioAssistant } from '../../api/client';
 import './clippy-assistant.css';
 
@@ -10,6 +10,7 @@ export default function ClippyAssistant({ variant = 'desktop' }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([{ role: 'assistant', text: INITIAL_MESSAGE }]);
+  const clipRef = useRef(null);
 
   const containerClass = useMemo(
     () =>
@@ -44,6 +45,23 @@ export default function ClippyAssistant({ variant = 'desktop' }) {
     }
   };
 
+  useEffect(() => {
+    const onMove = (e) => {
+      const el = clipRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = Math.max(-6, Math.min(6, (e.clientX - cx) / 18));
+      const dy = Math.max(-4, Math.min(4, (e.clientY - cy) / 24));
+      el.style.setProperty('--eye-x', `${dx}px`);
+      el.style.setProperty('--eye-y', `${dy}px`);
+    };
+
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
   return (
     <section className={containerClass} aria-live="polite">
       <button
@@ -53,7 +71,8 @@ export default function ClippyAssistant({ variant = 'desktop' }) {
         aria-expanded={open}
         aria-label="Abrir asistente Clip"
       >
-        <span className="clippy-avatar" aria-hidden="true">
+        <span className="clippy-avatar" aria-hidden="true" ref={clipRef}>
+          <span className="clippy-wire" />
           <span className="clippy-eye clippy-eye--left" />
           <span className="clippy-eye clippy-eye--right" />
           <span className="clippy-mouth" />

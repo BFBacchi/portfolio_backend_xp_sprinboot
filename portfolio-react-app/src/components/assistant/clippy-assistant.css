@@ -34,47 +34,67 @@
 }
 
 .clippy-avatar {
+  --eye-x: 0px;
+  --eye-y: 0px;
   position: relative;
   display: block;
-  width: 40px;
-  height: 46px;
+  width: 46px;
+  height: 54px;
   margin: 0 auto;
-  border: 3px solid #c6ccd8;
-  border-radius: 44% 44% 46% 46%;
-  background: linear-gradient(145deg, #fefefe 0%, #dfe5ef 100%);
-  animation: clippy-bob 1.7s ease-in-out infinite;
+  border: 3px solid #bfc7d6;
+  border-radius: 40% 40% 52% 52%;
+  background: radial-gradient(circle at 35% 26%, #ffffff 0%, #edf2f9 40%, #d9dfec 100%);
+  transform: rotate(6deg);
+  animation: clippy-idle 2.4s ease-in-out infinite;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 5px rgba(0, 0, 0, 0.28);
 }
 
 .clippy-assistant--thinking .clippy-avatar {
-  animation: clippy-thinking 0.6s ease-in-out infinite;
+  animation: clippy-thinking 0.7s ease-in-out infinite;
+}
+
+.clippy-wire {
+  position: absolute;
+  inset: -12px 8px auto;
+  height: 20px;
+  border: 3px solid #bfc7d6;
+  border-bottom: none;
+  border-radius: 60% 60% 0 0;
+  transform: rotate(-10deg);
+  background: transparent;
 }
 
 .clippy-eye {
   position: absolute;
-  top: 13px;
-  width: 6px;
-  height: 6px;
+  top: 18px;
+  width: 7px;
+  height: 8px;
   border-radius: 50%;
-  background: #1b2a41;
+  background: #18253c;
+  transform: translate(var(--eye-x), var(--eye-y));
+  animation: clippy-blink 4.5s infinite;
 }
 
 .clippy-eye--left {
-  left: 10px;
+  left: 12px;
 }
 
 .clippy-eye--right {
-  right: 10px;
+  right: 12px;
 }
 
 .clippy-mouth {
   position: absolute;
   left: 50%;
-  bottom: 12px;
-  width: 14px;
-  height: 6px;
-  margin-left: -7px;
+  bottom: 14px;
+  width: 16px;
+  height: 8px;
+  margin-left: -8px;
   border-bottom: 2px solid #1b2a41;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 12px 12px;
+  transform: rotate(-4deg);
 }
 
 .clippy-panel {
@@ -159,22 +179,34 @@
   cursor: pointer;
 }
 
-@keyframes clippy-bob {
+@keyframes clippy-idle {
   0%,
   100% {
-    transform: translateY(0);
+    transform: rotate(6deg) translateY(0);
   }
   50% {
-    transform: translateY(-3px);
+    transform: rotate(2deg) translateY(-4px);
   }
 }
 
 @keyframes clippy-thinking {
   0%,
   100% {
-    transform: rotate(-2deg) scale(1);
+    transform: rotate(2deg) translateY(0) scale(1);
   }
   50% {
-    transform: rotate(2deg) scale(1.03);
+    transform: rotate(-8deg) translateY(-2px) scale(1.04);
+  }
+}
+
+@keyframes clippy-blink {
+  0%,
+  44%,
+  48%,
+  100% {
+    transform: translate(var(--eye-x), var(--eye-y)) scaleY(1);
+  }
+  46% {
+    transform: translate(var(--eye-x), var(--eye-y)) scaleY(0.2);
   }
 }
