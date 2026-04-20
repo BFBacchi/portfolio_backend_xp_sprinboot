@@ -24,12 +24,12 @@ Puedes copiar `env.example` como referencia. Variables soportadas:
 | `DATABASE_USER` | Usuario de la base de datos | `portfolio` |
 | `DATABASE_PASSWORD` | Contraseña | `portfolio` |
 | `CORS_ALLOWED_ORIGINS` | Orígenes del frontend, separados por coma | `http://localhost:5173,http://127.0.0.1:5173` |
-| `OPENAI_ENABLED` | Habilita el endpoint de IA público | `false` |
-| `OPENAI_API_KEY` | API key de OpenAI (solo backend) | _(vacío)_ |
-| `OPENAI_MODEL` | Modelo OpenAI para respuestas | `gpt-4o-mini` |
-| `OPENAI_MAX_TOKENS` | Máximo de tokens de salida | `350` |
-| `OPENAI_TIMEOUT_MS` | Timeout HTTP a OpenAI en ms | `12000` |
-| `OPENAI_TEMPERATURE` | Temperatura del modelo | `0.3` |
+| `GROQ_ENABLED` | Habilita el endpoint de IA público | `false` |
+| `GROQ_API_KEY` | API key de Groq (solo backend) | _(vacío)_ |
+| `GROQ_MODEL` | Modelo de Groq para respuestas | `llama-3.1-8b-instant` |
+| `GROQ_MAX_TOKENS` | Máximo de tokens de salida | `350` |
+| `GROQ_TIMEOUT_MS` | Timeout HTTP a Groq en ms | `12000` |
+| `GROQ_TEMPERATURE` | Temperatura del modelo | `0.3` |
 
 En producción (por ejemplo EasyPanel), define estas variables en el panel; **no subas secretos al repositorio**.
 

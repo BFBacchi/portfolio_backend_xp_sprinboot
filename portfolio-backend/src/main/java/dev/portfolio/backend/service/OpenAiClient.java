@@ -16,7 +16,7 @@ import org.springframework.web.client.RestClientResponseException;
 @Component
 @RequiredArgsConstructor
 public class OpenAiClient {
-  private static final String OPENAI_CHAT_URL = "https://api.openai.com/v1/chat/completions";
+  private static final String GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions";
 
   private final AssistantProperties properties;
   private final ObjectMapper objectMapper;
@@ -26,7 +26,7 @@ public class OpenAiClient {
       throw new AssistantUnavailableException("El asistente IA está deshabilitado.");
     }
     if (properties.getApiKey() == null || properties.getApiKey().isBlank()) {
-      throw new AssistantUnavailableException("Falta configurar OPENAI_API_KEY en el backend.");
+      throw new AssistantUnavailableException("Falta configurar GROQ_API_KEY en el backend.");
     }
 
     RestClient client = buildRestClient();
@@ -44,16 +44,16 @@ public class OpenAiClient {
       String raw =
           client
               .post()
-              .uri(OPENAI_CHAT_URL)
+              .uri(GROQ_CHAT_URL)
               .header("Authorization", "Bearer " + properties.getApiKey())
               .body(payload)
               .retrieve()
               .body(String.class);
       return extractAnswer(raw);
     } catch (RestClientResponseException ex) {
-      throw new AssistantUpstreamException("OpenAI respondió con error: " + ex.getStatusCode(), ex);
+      throw new AssistantUpstreamException("Groq respondió con error: " + ex.getStatusCode(), ex);
     } catch (Exception ex) {
-      throw new AssistantUpstreamException("No se pudo consultar OpenAI.", ex);
+      throw new AssistantUpstreamException("No se pudo consultar Groq.", ex);
     }
   }
 
@@ -70,12 +70,12 @@ public class OpenAiClient {
 
   private String extractAnswer(String raw) throws Exception {
     if (raw == null || raw.isBlank()) {
-      throw new AssistantUpstreamException("OpenAI devolvió una respuesta vacía.", null);
+      throw new AssistantUpstreamException("Groq devolvió una respuesta vacía.", null);
     }
     JsonNode root = objectMapper.readTree(raw);
     JsonNode content = root.path("choices").path(0).path("message").path("content");
     if (content.isMissingNode() || content.asText().isBlank()) {
-      throw new AssistantUpstreamException("OpenAI no devolvió contenido utilizable.", null);
+      throw new AssistantUpstreamException("Groq no devolvió contenido utilizable.", null);
     }
     return content.asText().trim();
   }
