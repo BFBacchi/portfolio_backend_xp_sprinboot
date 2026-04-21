@@ -505,6 +505,93 @@ function IconPropsOverlay({ overlayId, payload }) {
   );
 }
 
+function isProbablyImageUrl(url) {
+  if (!url || typeof url !== "string") return false;
+  const path = url.split("?")[0].toLowerCase();
+  return /\.(png|jpe?g|gif|webp|svg)$/i.test(path);
+}
+
+function CertificatePreviewOverlay({ overlayId, payload }) {
+  const { closeOverlay } = useDesktopActions();
+  const url = payload?.url ?? "";
+  const title = payload?.title ? `Certificado — ${payload.title}` : "Certificado";
+  const showImg = isProbablyImageUrl(url);
+
+  return (
+    <OverlayFrame
+      overlayId={overlayId}
+      title={title}
+      dialogClassName="xp-overlay-dialog--wide"
+      footer={
+        <div className="xp-overlay-actions xp-overlay-actions--spread">
+          <a
+            className="xp-overlay-btn xp-overlay-btn--link"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir en nueva pestaña
+          </a>
+          <button type="button" className="xp-overlay-btn" onClick={() => closeOverlay(overlayId)}>
+            Cerrar
+          </button>
+        </div>
+      }
+    >
+      <div className="xp-overlay-media-scroll">
+        {showImg ? (
+          <img src={url} alt="" className="xp-overlay-project-img" />
+        ) : (
+          <iframe title="Certificado" className="xp-overlay-cert-iframe" src={url} />
+        )}
+        {!showImg ? (
+          <p className="xp-overlay-media-hint">
+            Si no se ve el contenido (p. ej. sitios que bloquean iframe), use «Abrir en nueva pestaña».
+          </p>
+        ) : null}
+      </div>
+    </OverlayFrame>
+  );
+}
+
+function ProjectImagesOverlay({ overlayId, payload }) {
+  const { closeOverlay } = useDesktopActions();
+  const title = payload?.title ? `Capturas — ${payload.title}` : "Capturas del proyecto";
+  const u1 = (payload?.imageUrl1 || "").trim();
+  const u2 = (payload?.imageUrl2 || "").trim();
+
+  return (
+    <OverlayFrame
+      overlayId={overlayId}
+      title={title}
+      dialogClassName="xp-overlay-dialog--wide"
+      footer={
+        <div className="xp-overlay-actions">
+          <button type="button" className="xp-overlay-btn" onClick={() => closeOverlay(overlayId)}>
+            Cerrar
+          </button>
+        </div>
+      }
+    >
+      <div className="xp-overlay-media-scroll">
+        {u1 ? (
+          <>
+            <div className="xp-overlay-img-label">Imagen 1</div>
+            <img src={u1} alt="" className="xp-overlay-project-img" />
+          </>
+        ) : null}
+        {u2 ? (
+          <>
+            <div className="xp-overlay-img-label">Imagen 2</div>
+            <img src={u2} alt="" className="xp-overlay-project-img" />
+          </>
+        ) : null}
+        {!u1 && !u2 ? <p>No hay URLs de imagen configuradas.</p> : null}
+      </div>
+    </OverlayFrame>
+  );
+}
+
 function OverlayForEntry({ entry }) {
   switch (entry.type) {
     case "notepad":
@@ -527,6 +614,12 @@ function OverlayForEntry({ entry }) {
       return <DesktopPropsOverlay overlayId={entry.id} payload={entry.payload} />;
     case "iconprops":
       return <IconPropsOverlay overlayId={entry.id} payload={entry.payload} />;
+    case "certificatePreview":
+      return (
+        <CertificatePreviewOverlay overlayId={entry.id} payload={entry.payload} />
+      );
+    case "projectImages":
+      return <ProjectImagesOverlay overlayId={entry.id} payload={entry.payload} />;
     default:
       return null;
   }

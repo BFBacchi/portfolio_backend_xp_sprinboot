@@ -1,8 +1,10 @@
 import React from 'react';
 import { usePortfolioPublic } from '../../contexts/PortfolioPublicContext';
+import { useDesktopActions } from '../startDesktop/context/DesktopActionsContext';
 import './portfolio-win.css';
 
 export default function PortfolioShowcaseContent() {
+  const { openOverlay } = useDesktopActions();
   const { loading, error, about, projects, education, skills, workExperience, refresh } =
     usePortfolioPublic();
 
@@ -74,6 +76,24 @@ export default function PortfolioShowcaseContent() {
                 {[ed.degree, ed.periodLabel].filter(Boolean).join(' · ')}
               </div>
               {ed.description ? <p>{ed.description}</p> : null}
+              {ed.certificateUrl ? (
+                <p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openOverlay({
+                        type: 'certificatePreview',
+                        payload: {
+                          title: [ed.institution, ed.degree].filter(Boolean).join(' — ') || 'Certificado',
+                          url: ed.certificateUrl,
+                        },
+                      })
+                    }
+                  >
+                    Ver certificado
+                  </button>
+                </p>
+              ) : null}
             </div>
           ))
         )}
@@ -95,6 +115,25 @@ export default function PortfolioShowcaseContent() {
                 <a href={p.projectUrl} target="_blank" rel="noreferrer">
                   Enlace
                 </a>
+              ) : null}
+              {p.imageUrl1 || p.imageUrl2 ? (
+                <p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openOverlay({
+                        type: 'projectImages',
+                        payload: {
+                          title: p.title,
+                          imageUrl1: p.imageUrl1,
+                          imageUrl2: p.imageUrl2,
+                        },
+                      })
+                    }
+                  >
+                    Ver capturas
+                  </button>
+                </p>
               ) : null}
             </div>
           ))

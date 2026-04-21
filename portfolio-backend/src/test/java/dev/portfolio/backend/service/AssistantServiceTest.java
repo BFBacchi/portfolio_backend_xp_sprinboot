@@ -42,9 +42,9 @@ class AssistantServiceTest {
     when(contentService.getPublicAboutMe())
         .thenReturn(new AboutMeDto(1L, "Dev", "Bio", "CV", "Tag", "Luna", null));
     when(contentService.listProjectsPublic())
-        .thenReturn(List.of(new ProjectDto(1L, "Portfolio XP", "React + Spring", null, null, 0)));
+        .thenReturn(List.of(new ProjectDto(1L, "Portfolio XP", "React + Spring", null, null, null, null, 0)));
     when(contentService.listEducationPublic())
-        .thenReturn(List.of(new EducationDto(1L, "UTN", "Ingeniería", "2010-2015", "", 0)));
+        .thenReturn(List.of(new EducationDto(1L, "UTN", "Ingeniería", "2010-2015", "", null, 0)));
     when(contentService.listSkillsPublic())
         .thenReturn(List.of(new SkillDto(1L, "Java", "Backend", "", 0)));
     when(contentService.listWorkExperiencePublic())

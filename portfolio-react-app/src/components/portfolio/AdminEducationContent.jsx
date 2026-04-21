@@ -11,6 +11,7 @@ const emptyForm = () => ({
   degree: '',
   periodLabel: '',
   description: '',
+  certificateUrl: '',
   sortOrder: 0,
 });
 
@@ -50,6 +51,7 @@ export default function AdminEducationContent() {
       degree: ed.degree || '',
       periodLabel: ed.periodLabel || '',
       description: ed.description || '',
+      certificateUrl: ed.certificateUrl || '',
       sortOrder: ed.sortOrder ?? 0,
     });
   }
@@ -163,6 +165,15 @@ export default function AdminEducationContent() {
           <textarea
             value={form.description}
             onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+          />
+        </div>
+        <div className="admin-xp-field">
+          <label>URL del certificado (opcional)</label>
+          <input
+            type="url"
+            value={form.certificateUrl}
+            onChange={(e) => setForm((f) => ({ ...f, certificateUrl: e.target.value }))}
+            placeholder="https://…"
           />
         </div>
         <div className="admin-xp-field">

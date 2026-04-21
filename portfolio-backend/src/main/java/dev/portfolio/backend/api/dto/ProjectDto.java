@@ -5,5 +5,7 @@ public record ProjectDto(
     String title,
     String description,
     String projectUrl,
+    String imageUrl1,
+    String imageUrl2,
     String technologies,
     int sortOrder) {}

@@ -1,5 +1,8 @@
 # Imagen de producción para EasyPanel / Docker (multi-stage)
-# Runtime: JRE sobre Ubuntu Noble (parches de seguridad más frecuentes que Alpine en muchos escaneos).
+# CORS, JWT, DB, etc. deben ir en variables de entorno del CONTENEDOR en ejecución.
+# Los --build-arg del panel no llegan a Spring salvo que las declares como ENV abajo.
+#
+# Runtime: JRE Alpine (ligera).
 FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY pom.xml .

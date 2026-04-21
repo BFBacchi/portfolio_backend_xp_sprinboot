@@ -38,6 +38,12 @@ public class Project {
   @Column(name = "project_url", length = 500)
   private String projectUrl;
 
+  @Column(name = "image_url_1", length = 2048)
+  private String imageUrl1;
+
+  @Column(name = "image_url_2", length = 2048)
+  private String imageUrl2;
+
   @Column(length = 500)
   private String technologies;
 

@@ -41,6 +41,9 @@ public class Education {
   @Column(columnDefinition = "TEXT")
   private String description;
 
+  @Column(name = "certificate_url", length = 2048)
+  private String certificateUrl;
+
   @Column(name = "sort_order", nullable = false)
   private int sortOrder = 0;
 

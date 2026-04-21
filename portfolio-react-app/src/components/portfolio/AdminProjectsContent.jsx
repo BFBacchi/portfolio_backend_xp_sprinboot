@@ -10,6 +10,8 @@ const emptyForm = () => ({
   title: '',
   description: '',
   projectUrl: '',
+  imageUrl1: '',
+  imageUrl2: '',
   technologies: '',
   sortOrder: 0,
 });
@@ -49,6 +51,8 @@ export default function AdminProjectsContent() {
       title: p.title || '',
       description: p.description || '',
       projectUrl: p.projectUrl || '',
+      imageUrl1: p.imageUrl1 || '',
+      imageUrl2: p.imageUrl2 || '',
       technologies: p.technologies || '',
       sortOrder: p.sortOrder ?? 0,
     });
@@ -150,10 +154,28 @@ export default function AdminProjectsContent() {
           />
         </div>
         <div className="admin-xp-field">
-          <label>URL</label>
+          <label>URL del proyecto</label>
           <input
             value={form.projectUrl}
             onChange={(e) => setForm((f) => ({ ...f, projectUrl: e.target.value }))}
+          />
+        </div>
+        <div className="admin-xp-field">
+          <label>URL imagen 1 (opcional)</label>
+          <input
+            type="url"
+            value={form.imageUrl1}
+            onChange={(e) => setForm((f) => ({ ...f, imageUrl1: e.target.value }))}
+            placeholder="https://…"
+          />
+        </div>
+        <div className="admin-xp-field">
+          <label>URL imagen 2 (opcional)</label>
+          <input
+            type="url"
+            value={form.imageUrl2}
+            onChange={(e) => setForm((f) => ({ ...f, imageUrl2: e.target.value }))}
+            placeholder="https://…"
           />
         </div>
         <div className="admin-xp-field">

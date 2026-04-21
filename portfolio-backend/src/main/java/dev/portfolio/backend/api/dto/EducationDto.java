@@ -6,4 +6,5 @@ public record EducationDto(
     String degree,
     String periodLabel,
     String description,
+    String certificateUrl,
     int sortOrder) {}

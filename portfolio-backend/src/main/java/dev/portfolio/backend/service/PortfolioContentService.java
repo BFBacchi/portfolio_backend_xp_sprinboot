@@ -170,6 +170,8 @@ public class PortfolioContentService {
     p.setTitle(req.title());
     p.setDescription(req.description());
     p.setProjectUrl(req.projectUrl());
+    p.setImageUrl1(req.imageUrl1());
+    p.setImageUrl2(req.imageUrl2());
     p.setTechnologies(req.technologies());
     p.setSortOrder(req.sortOrder());
   }
@@ -180,6 +182,8 @@ public class PortfolioContentService {
         p.getTitle(),
         p.getDescription(),
         p.getProjectUrl(),
+        p.getImageUrl1(),
+        p.getImageUrl2(),
         p.getTechnologies(),
         p.getSortOrder());
   }
@@ -231,6 +235,7 @@ public class PortfolioContentService {
     e.setDegree(req.degree());
     e.setPeriodLabel(req.periodLabel());
     e.setDescription(req.description());
+    e.setCertificateUrl(req.certificateUrl());
     e.setSortOrder(req.sortOrder());
   }
 
@@ -241,6 +246,7 @@ public class PortfolioContentService {
         e.getDegree(),
         e.getPeriodLabel(),
         e.getDescription(),
+        e.getCertificateUrl(),
         e.getSortOrder());
   }
 

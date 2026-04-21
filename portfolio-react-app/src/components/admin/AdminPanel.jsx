@@ -16,6 +16,8 @@ const emptyProj = () => ({
   title: '',
   description: '',
   projectUrl: '',
+  imageUrl1: '',
+  imageUrl2: '',
   technologies: '',
   sortOrder: 0,
 });
@@ -25,6 +27,7 @@ const emptyEdu = () => ({
   degree: '',
   periodLabel: '',
   description: '',
+  certificateUrl: '',
   sortOrder: 0,
 });
 
@@ -135,6 +138,8 @@ export default function AdminPanel() {
       title: p.title || '',
       description: p.description || '',
       projectUrl: p.projectUrl || '',
+      imageUrl1: p.imageUrl1 || '',
+      imageUrl2: p.imageUrl2 || '',
       technologies: p.technologies || '',
       sortOrder: p.sortOrder ?? 0,
     });
@@ -187,6 +192,7 @@ export default function AdminPanel() {
       degree: ed.degree || '',
       periodLabel: ed.periodLabel || '',
       description: ed.description || '',
+      certificateUrl: ed.certificateUrl || '',
       sortOrder: ed.sortOrder ?? 0,
     });
   }
@@ -460,6 +466,24 @@ export default function AdminPanel() {
                   />
                 </div>
                 <div className="admin-xp-field">
+                  <label>URL imagen 1 (opcional)</label>
+                  <input
+                    type="url"
+                    value={projForm.imageUrl1}
+                    onChange={(e) => setProjForm((f) => ({ ...f, imageUrl1: e.target.value }))}
+                    placeholder="https://…"
+                  />
+                </div>
+                <div className="admin-xp-field">
+                  <label>URL imagen 2 (opcional)</label>
+                  <input
+                    type="url"
+                    value={projForm.imageUrl2}
+                    onChange={(e) => setProjForm((f) => ({ ...f, imageUrl2: e.target.value }))}
+                    placeholder="https://…"
+                  />
+                </div>
+                <div className="admin-xp-field">
                   <label>Tecnologías (texto corto)</label>
                   <input
                     value={projForm.technologies}
@@ -622,6 +646,15 @@ export default function AdminPanel() {
                   <textarea
                     value={eduForm.description}
                     onChange={(e) => setEduForm((f) => ({ ...f, description: e.target.value }))}
+                  />
+                </div>
+                <div className="admin-xp-field">
+                  <label>URL del certificado (opcional)</label>
+                  <input
+                    type="url"
+                    value={eduForm.certificateUrl}
+                    onChange={(e) => setEduForm((f) => ({ ...f, certificateUrl: e.target.value }))}
+                    placeholder="https://…"
                   />
                 </div>
                 <div className="admin-xp-field">

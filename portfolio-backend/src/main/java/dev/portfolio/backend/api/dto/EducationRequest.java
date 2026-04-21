@@ -8,4 +8,5 @@ public record EducationRequest(
     @Size(max = 255) String degree,
     @Size(max = 120) String periodLabel,
     @Size(max = 8000) String description,
+    @Size(max = 2048) String certificateUrl,
     int sortOrder) {}

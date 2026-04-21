@@ -51,8 +51,10 @@ public class SecurityConfig {
     c.setAllowedOriginPatterns(patterns);
     c.setAllowedHeaders(List.of("*"));
     c.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    c.setMaxAge(3600L);
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/api/**", c);
+    // Cubrir toda la app; el origen sigue acotado por allowed-origins.
+    source.registerCorsConfiguration("/**", c);
     return source;
   }
 

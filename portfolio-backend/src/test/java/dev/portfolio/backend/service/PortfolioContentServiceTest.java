@@ -39,7 +39,8 @@ class PortfolioContentServiceTest {
   void createAndListProject() {
     contentService.createProject(
         userId,
-        new ProjectRequest("Mi app XP", "Descripción", "https://github.com/x", "Java, React", 0));
+        new ProjectRequest(
+            "Mi app XP", "Descripción", "https://github.com/x", null, null, "Java, React", 0));
     assertThat(contentService.listProjectsForUser(userId)).hasSize(1);
   }
 }
