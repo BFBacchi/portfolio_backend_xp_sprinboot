@@ -200,37 +200,31 @@ export const EXPLORER_PATHS = {
     title: "Bruno Bacchi (portfolio)",
     address: "Bruno Bacchi (portfolio)",
     parent: "mycomputer",
-    items: [
-      {
-        name: "README.md",
-        size: "2 KB",
-        type: "Markdown",
-        date: "02/04/2026 19:00",
-        icon: "doc",
-      },
-      {
-        name: "Proyectos",
-        size: "",
-        type: "Carpeta de archivos",
-        date: "01/04/2026 16:20",
-        navigateTo: "portfolioprojects",
-        icon: "folder",
-      },
-    ],
+    items: [],
   },
   portfolioprojects: {
     title: "Proyectos",
     address: "Bruno Bacchi (portfolio)\\Proyectos",
     parent: "portfolio",
-    items: [
-      {
-        name: "Windows XP UI (React)",
-        size: "",
-        type: "Carpeta de archivos",
-        date: "02/04/2026 20:00",
-        icon: "folder",
-      },
-    ],
+    items: [],
+  },
+  portfolieducation: {
+    title: "Educación",
+    address: "Bruno Bacchi (portfolio)\\Educación",
+    parent: "portfolio",
+    items: [],
+  },
+  portfoliowork: {
+    title: "Experiencia laboral",
+    address: "Bruno Bacchi (portfolio)\\Experiencia laboral",
+    parent: "portfolio",
+    items: [],
+  },
+  portfolioskills: {
+    title: "Habilidades",
+    address: "Bruno Bacchi (portfolio)\\Habilidades",
+    parent: "portfolio",
+    items: [],
   },
   documents: {
     title: "Mis documentos",

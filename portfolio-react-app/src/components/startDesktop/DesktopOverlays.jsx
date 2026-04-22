@@ -36,11 +36,13 @@ function OverlayFrame({ overlayId, title, children, footer, dialogClassName }) {
   );
 }
 
-function NotepadOverlay({ overlayId }) {
-  const LS = "xp-portfolio-notepad";
+function NotepadOverlay({ overlayId, payload }) {
+  const storageKey = payload?.storageKey ?? "xp-portfolio-notepad";
+  const initialFromPayload = payload?.initialText;
   const [text, setText] = useState(() => {
+    if (initialFromPayload != null) return initialFromPayload;
     try {
-      return localStorage.getItem(LS) || "";
+      return localStorage.getItem(storageKey) || "";
     } catch {
       return "";
     }
@@ -49,17 +51,19 @@ function NotepadOverlay({ overlayId }) {
 
   const save = useCallback(() => {
     try {
-      localStorage.setItem(LS, text);
+      localStorage.setItem(storageKey, text);
       window.alert("Texto guardado en el almacenamiento local del navegador.");
     } catch {
       window.alert("No se pudo guardar.");
     }
-  }, [text]);
+  }, [text, storageKey]);
+
+  const frameTitle = payload?.windowTitle || "Bloc de notas";
 
   return (
     <OverlayFrame
       overlayId={overlayId}
-      title="Bloc de notas"
+      title={frameTitle}
       footer={
         <div className="xp-overlay-actions">
           <button type="button" className="xp-overlay-btn" onClick={save}>
@@ -595,7 +599,7 @@ function ProjectImagesOverlay({ overlayId, payload }) {
 function OverlayForEntry({ entry }) {
   switch (entry.type) {
     case "notepad":
-      return <NotepadOverlay overlayId={entry.id} />;
+      return <NotepadOverlay overlayId={entry.id} payload={entry.payload} />;
     case "calc":
       return <CalculatorOverlay overlayId={entry.id} />;
     case "paint":

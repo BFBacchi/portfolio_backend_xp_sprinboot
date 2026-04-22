@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { usePortfolioPublic } from "../../../contexts/PortfolioPublicContext";
 import { useDesktopActions } from "../context/DesktopActionsContext";
+import {
+  buildReadmeMarkdown,
+  getPortfolioExplorerNode,
+} from "../context/portfolioExplorerData";
 import ContextMenu from "../contextMenu/ContextMenu";
 import { EXPLORER_PATHS, DEFAULT_EXPLORER_PATH } from "../context/explorerFs";
 import "./explorerView.css";
@@ -82,13 +87,19 @@ export default function ExplorerView({ variant, windowId }) {
     openOverlay,
   } = useDesktopActions();
 
+  const portfolioPublic = usePortfolioPublic();
+
   const nav = explorerNav[windowId] || {
     path: isBin ? "bin" : DEFAULT_EXPLORER_PATH,
     past: [],
     future: [],
   };
 
-  const node = !isBin ? EXPLORER_PATHS[nav.path] : null;
+  const node = useMemo(() => {
+    if (isBin) return null;
+    const fromPortfolio = getPortfolioExplorerNode(nav.path, portfolioPublic);
+    return fromPortfolio ?? EXPLORER_PATHS[nav.path] ?? null;
+  }, [isBin, nav.path, portfolioPublic]);
   const address = isBin ? "Papelera" : node?.address || "Mi PC";
   const listRows = useMemo(() => {
     if (isBin) {
@@ -136,11 +147,25 @@ export default function ExplorerView({ variant, windowId }) {
   const handleActivate = useCallback(
     (row) => {
       if (isBin) return;
+      if (row.loadingPlaceholder) return;
       if (row.navigateTo) navigateExplorer(windowId, row.navigateTo);
+      if (row.action === "portfolioReadme") {
+        const text = buildReadmeMarkdown(row.readmeType, row.readmeId, portfolioPublic);
+        const storageKey = `xp-readme-${row.readmeType}-${row.readmeId ?? "about"}`;
+        openOverlay({
+          type: "notepad",
+          payload: {
+            initialText: text,
+            windowTitle: `Bloc de notas — ${row.name}`,
+            storageKey,
+          },
+        });
+        return;
+      }
       if (row.action === "notepad") openOverlay("notepad");
       if (row.action === "calc") openOverlay("calc");
     },
-    [isBin, windowId, navigateExplorer, openOverlay]
+    [isBin, windowId, navigateExplorer, openOverlay, portfolioPublic]
   );
 
   const openRowMenu = useCallback(
@@ -535,7 +560,9 @@ export default function ExplorerView({ variant, windowId }) {
           {viewMode === "icons" ? (
             <div className="xp-ex-icons-view">
               {listRows.length === 0 ? (
-                <div className="xp-ex-empty">{isBin ? "La papelera está vacía." : ""}</div>
+                <div className="xp-ex-empty">
+                  {isBin ? "La papelera está vacía." : "Esta carpeta está vacía."}
+                </div>
               ) : (
                 listRows.map((row) => (
                   <button
@@ -565,7 +592,9 @@ export default function ExplorerView({ variant, windowId }) {
               </div>
               <div className="xp-ex-list-body" role="list">
                 {listRows.length === 0 ? (
-                  <div className="xp-ex-empty">{isBin ? "La papelera está vacía." : ""}</div>
+                  <div className="xp-ex-empty">
+                    {isBin ? "La papelera está vacía." : "Esta carpeta está vacía."}
+                  </div>
                 ) : (
                   listRows.map((row) => (
                     <div
